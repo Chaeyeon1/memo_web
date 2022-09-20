@@ -1,4 +1,10 @@
+
 -# Getting Started with Create React App
+
+yoon "first commit"
+
+# memo_web
+# Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
