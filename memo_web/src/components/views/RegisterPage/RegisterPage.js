@@ -16,43 +16,44 @@ function LandingPage() {
       {/* <script>try{Typekit.load({ async: true });}catch(e){}</script> */}
 
       <div class="container">
-        <h1 class="welcome text-center">Welcome to Ice Code</h1>
+        <h1 class="welcome text-center">Welcome to Memo Web</h1>
         <div class="card card-container">
           <h2 class="login_title text-center">Login</h2>
 
           <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
-            <p class="input_title">Email</p>
+            <p class="input_title">닉네임</p>
             <input
               type="text"
               id="inputEmail"
               class="login_box"
-              placeholder="user01@IceCode.com"
+              placeholder="Nickname"
               required
               autofocus
             />
-            <p class="input_title">Password</p>
+            <p class="input_title">아이디</p>
+            <input
+              type="text"
+              id="inputEmail"
+              class="login_box"
+              placeholder="Id"
+              required
+              autofocus
+            />
+            <p class="input_title">비밀번호</p>
             <input
               type="password"
               id="inputPassword"
               class="login_box"
-              placeholder="******"
+              placeholder="password"
               required
             />
-            <p class="input_title">Password</p>
+            <p class="input_title">비밀번호 확인</p>
             <input
               type="password"
               id="inputPassword"
               class="login_box"
-              placeholder="******"
-              required
-            />
-            <p class="input_title">Password</p>
-            <input
-              type="password"
-              id="inputPassword"
-              class="login_box"
-              placeholder="******"
+              placeholder="password check"
               required
             />
             <div id="remember" class="checkbox">
