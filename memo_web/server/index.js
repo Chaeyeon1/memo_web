@@ -14,6 +14,8 @@ app.use(cookieParser());
 
 const mongoose = require('mongoose')
 mongoose.connect(config.mongoURI, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
 }).then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err))
 
@@ -25,13 +27,19 @@ mongoose.connect(config.mongoURI, {
 app.post('/register', (req, res) => {
     const user = new User(req.body)
   
-    user.save((err,userInfo) => {
-      if(err) return res.json({success : false, err})
-      return res.status(200).json({
-        success : true
-      })
-    })
-  })
+    user.save((err, userInfo) => {
+        if(err) {
+            return res.json({
+                success : false, 
+                message : err 
+            });
+        }
+        return res.status(200).json({
+            success : true,
+            message : "회원가입 완료"
+        });
+    });
+});
 
 // main login
 app.post('/', (req, res) => {
@@ -77,7 +85,7 @@ app.get('/logout',auth,(req, res)=> {
   })
 })
 
-const port = 3000
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});

@@ -6,12 +6,36 @@ const jwt = require('jsonwebtoken');
 const userSchema = mongoose.Schema({
     name : {
         type : String,
-        unique : 1,
-        maxlength : 50
+        unique : true,
+        maxlength : 50,
+        required: [
+            true, 
+            "닉네임을 입력하세요."
+        ]
+    },
+    id : {
+        type : String,
+        unique : true,
+        trim : true,
+        required: [
+            true, 
+            "아이디를 입력하세요."
+        ],
+        match: [
+            /[a-z0-9_]{4,20}/,
+            "아이디는 4 ~ 20자의 영문(소문자), 숫자, _ 조합으로 입력해야 합니다."
+        ]
     },
     password : {
         type : String,
-        minlength : 5
+        required: [
+            true,
+            "비밀번호를 입력하세요"
+        ],
+        match: [
+            /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{5,20}/,
+            "비밀번호는 5 ~ 20자 영문(대소문자), 최소 1개의 숫자 혹은 특수 문자 조합으로 입력해야 합니다."
+        ]
     },
     role : {
         type : Number,
@@ -23,7 +47,7 @@ const userSchema = mongoose.Schema({
     tokenExp : {
         type : Number
     }
-})
+});
 
 userSchema.pre('save', function( next ) {
     var user = this;
