@@ -1,10 +1,16 @@
 {
+  "name": "memo_web",
+  "version": "1.0.0",
+  "description": "memo_web_back",
+  "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
     "backend": "nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev" : "concurrently \"npm run backend\" \"npm run start --prefix client\"" 
   },
+  "author": "memo_web",
+  "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
