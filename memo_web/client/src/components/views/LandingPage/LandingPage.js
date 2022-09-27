@@ -22,21 +22,21 @@ function LandingPage() {
 
           <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
-            <p class="input_title">Email</p>
+            <p class="input_title">Id</p>
             <input
               type="text"
-              id="inputEmail"
+              id="id"
               class="login_box"
-              placeholder="user01@IceCode.com"
+              placeholder="Id"
               required
               autofocus
             />
             <p class="input_title">Password</p>
             <input
               type="password"
-              id="inputPassword"
+              id="password"
               class="login_box"
-              placeholder="******"
+              placeholder="Password"
               required
             />
             <div id="remember" class="checkbox">

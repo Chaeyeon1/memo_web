@@ -18,23 +18,23 @@ function LandingPage() {
       <div class="container">
         <h1 class="welcome text-center">Welcome to Memo Web</h1>
         <div class="card card-container">
-          <h2 class="login_title text-center">Login</h2>
+          <h2 class="login_title text-center">Register</h2>
 
           <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
-            <p class="input_title">닉네임</p>
+            <p class="input_title">이름</p>
             <input
               type="text"
-              id="inputEmail"
+              id="name"
               class="login_box"
-              placeholder="Nickname"
+              placeholder="Name"
               required
               autofocus
             />
             <p class="input_title">아이디</p>
             <input
               type="text"
-              id="inputEmail"
+              id="id"
               class="login_box"
               placeholder="Id"
               required
@@ -43,7 +43,7 @@ function LandingPage() {
             <p class="input_title">비밀번호</p>
             <input
               type="password"
-              id="inputPassword"
+              id="password"
               class="login_box"
               placeholder="password"
               required
