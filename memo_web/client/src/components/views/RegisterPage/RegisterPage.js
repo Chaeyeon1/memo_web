@@ -18,7 +18,7 @@ function LandingPage() {
       <div class="container">
         <h1 class="welcome text-center">Welcome to Memo Web</h1>
         <div class="card card-container">
-          <h2 class="login_title text-center">Register</h2>
+          <h2 class="login_title text-center">회원가입</h2>
 
           <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
@@ -60,7 +60,7 @@ function LandingPage() {
               <label></label>
             </div>
             <button class="btn btn-lg btn-primary" type="submit">
-              Login
+              회원가입
             </button>
           </form>
         </div>
