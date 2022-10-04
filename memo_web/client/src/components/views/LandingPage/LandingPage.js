@@ -1,5 +1,6 @@
 import React from "react";
 import "./LandingPage.css";
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
   return (
@@ -16,9 +17,9 @@ function LandingPage() {
       {/* <script>try{Typekit.load({ async: true });}catch(e){}</script> */}
 
       <div class="container">
-        <h1 class="welcome text-center">Welcome to Ice Code</h1>
+        <h1 class="welcome text-center">Welcome to Memo Web</h1>
         <div class="card card-container">
-          <h2 class="login_title text-center">Login</h2>
+          <h2 class="login_title text-center">로그인</h2>
 
           <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
@@ -43,8 +44,15 @@ function LandingPage() {
               <label></label>
             </div>
             <button class="btn btn-lg btn-primary" type="submit">
-              Login
+              로그인
             </button>
+            <br />
+            <button class="btn btn-lg btn-primary" type="submit">
+            <Link to="register" style={{ color: "white", textDecoration: "none" }}>
+              회원가입
+            </Link>
+            </button>
+            
           </form>
         </div>
       </div>
