@@ -12,14 +12,21 @@
   "author": "memo_web",
   "license": "ISC",
   "dependencies": {
+    "@iconify/react": "^4.0.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "concurrently": "^7.4.0",
     "cookie-parser": "^1.4.6",
     "create-react-app": "^5.0.1",
+    "create-react-class": "^15.7.0",
+    "date-fns": "^2.29.3",
     "express": "^4.18.1",
+    "http-proxy-middleware": "^2.0.6",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.6.2"
+    "mongoose": "^6.6.2",
+    "react-icons": "^4.4.0",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",
