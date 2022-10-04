@@ -7,7 +7,7 @@ import MainPage from "./components/views/MainPage/MainPage";
 function App() {
   return (
     <Router>
-      <div>
+      <div style={{ paddingTop: "69px", minHeight: "calc(100vh - 80px)" }}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/main" element={<MainPage />} />
