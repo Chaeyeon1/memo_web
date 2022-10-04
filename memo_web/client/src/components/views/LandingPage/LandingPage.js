@@ -46,12 +46,14 @@ function LandingPage() {
             <button class="btn btn-lg btn-primary" type="submit">
               로그인
             </button>
+
             <br />
-            <button class="btn btn-lg btn-primary" type="submit">
+            
             <Link to="register" style={{ color: "white", textDecoration: "none" }}>
+            <button class="btn btn-lg btn-primary" type="submit">
               회원가입
-            </Link>
             </button>
+            </Link>
             
           </form>
         </div>
