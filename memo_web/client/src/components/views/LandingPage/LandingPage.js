@@ -1,8 +1,17 @@
 import React from "react";
 import "./LandingPage.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 function LandingPage() {
+  const navigate = useNavigate();
+  const loginHandler = () => {
+    navigate("/main");
+  };
+
+  const registerHandler = () => {
+    navigate("/register");
+  };
+
   return (
     <div>
       <link
@@ -43,18 +52,28 @@ function LandingPage() {
             <div id="remember" class="checkbox">
               <label></label>
             </div>
-            <button class="btn btn-lg btn-primary" type="submit">
+            <button
+              class="btn btn-lg btn-primary"
+              type="submit"
+              onClick={loginHandler}
+            >
               로그인
             </button>
 
             <br />
-            
-            <Link to="register" style={{ color: "white", textDecoration: "none" }}>
-            <button class="btn btn-lg btn-primary" type="submit">
-              회원가입
-            </button>
+
+            <Link
+              to="register"
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              <button
+                class="btn btn-lg btn-primary"
+                type="submit"
+                onClick={registerHandler}
+              >
+                회원가입
+              </button>
             </Link>
-            
           </form>
         </div>
       </div>

@@ -1,7 +1,12 @@
 import React from "react";
 import "../LandingPage/LandingPage";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
+  const navigate = useNavigate();
+  const registerHandler = () => {
+    navigate("/");
+  };
   return (
     <div>
       <link
@@ -59,7 +64,11 @@ function LandingPage() {
             <div id="remember" class="checkbox">
               <label></label>
             </div>
-            <button class="btn btn-lg btn-primary" type="submit">
+            <button
+              class="btn btn-lg btn-primary"
+              type="submit"
+              onClick={registerHandler}
+            >
               회원가입
             </button>
           </form>
