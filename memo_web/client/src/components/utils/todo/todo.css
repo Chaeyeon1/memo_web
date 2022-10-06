@@ -84,3 +84,21 @@
 .todoapp__item-edit-btn {
   margin-right: 3px;
 }
+
+.todoapp__item-ctx-checked {
+  font-style: italic;
+  text-decoration: line-through;
+  color: #868e96;
+}
+
+.todoapp__item-edit-input {
+  flex: 1;
+  border: none;
+  border-bottom: 1px solid #f1f3f5;
+  padding: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+.todoapp__item-edit-input:focus {
+  outline: none;
+}
