@@ -1,6 +1,17 @@
 @use './theme.scss';
 @use './_common.scss' as common;
 
+.text{
+    font-size: 1.0em;
+}
+
+.text.month {
+    margin-right: 5px;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+
 .calendar {
     @include common.size(100%, 90%);
     .header {
@@ -41,6 +52,7 @@
         font-size: 0.65em;
         padding: 2px;
         color: theme.$dark-gray-color;
+        margin:0px;
         .col {
             @include common.size(12.9%, 100%);
             @include common.flex-column(flex-end, flex-start);
