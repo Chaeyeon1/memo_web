@@ -50,15 +50,18 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
     let day = startDate;
     let formattedDate = '';
 
+    
+
     while (day <= endDate) {
         for (let i = 0; i < 7; i++) {
             formattedDate = format(day, 'd');
             const cloneDay = day;
+
             days.push(
                 <div
                     className={`col cell ${
                         !isSameMonth(day, monthStart)
-                            ? 'disabled'
+                            ? 'disabled'    // 이전 달 말일 & 이후 달 초일
                             : isSameDay(day, selectedDate)
                             ? 'selected'
                             : format(currentMonth, 'M') !== format(day, 'M')
@@ -104,6 +107,10 @@ export const Calendar = () => {
     const onDateClick = (day) => {
         setSelectedDate(day);
     };
+
+
+    
+
     return (
         <div className="calendar">
             <RenderHeader

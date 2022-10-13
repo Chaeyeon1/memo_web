@@ -1,5 +1,5 @@
 import React from "react";
-import Calender from "../../utils/Calendar";
+import Calender from "../../utils/calender/Calendar";
 import Todo from "../../utils/todo/todo";
 import Slider from "../../utils/slider";
 import "./MainPage.css";
