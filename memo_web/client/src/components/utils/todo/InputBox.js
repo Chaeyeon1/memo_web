@@ -10,9 +10,15 @@ function InputBox(props) {
   };
 
   const addHandler = () => {
-    props.refreshFunction(Text); // 추가 버튼을 누르면 props에 Text가 전해짐
-    setText(""); // input의 값을 초기화 시킴
+    if(Text.trim() !== "") { // 공백이 아닐때만 실행
+      props.refreshFunction(Text.trim()); // 추가 버튼을 누르면 props에 Text가 전해짐 + 앞뒤 공백제거
+      setText(""); // input의 값을 초기화 시킴
+    }
     inputRef.current.focus(); // 커서가 그쪽으로 감
+  };
+
+  const OnKeyPress = (event) => { // Enter 누르면 버튼 기능 실행
+    if (event.key === 'Enter') addHandler();
   };
 
   useEffect(() => {
@@ -30,6 +36,7 @@ function InputBox(props) {
         value={Text}
         ref={inputRef}
         onChange={onChangeInput}
+        onKeyPress={OnKeyPress}
       />
 
       {/* 입력 후 아이템 추가 버튼 */}
