@@ -2,14 +2,17 @@ import React, { useState, useRef } from "react";
 import "./todo.css";
 import InputBox from "./InputBox";
 import ToDoItemList from "./ToDoItemList";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  //const user = useSelector(state => state.user)
   const [todoList, setTodoList] = useState([]);
 
   const nextId = useRef(4);
 
   const updateText = (newText) => {
     const todo = {
+      // userid : user.userData.id,
       id: nextId.current,
       text: newText,
       checked: false,
