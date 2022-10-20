@@ -20,52 +20,52 @@ function RegisterPage() {
       <script src="https://use.typekit.net/ayg4pcz.js"></script>
       {/* <script>try{Typekit.load({ async: true });}catch(e){}</script> */}
 
-      <div class="container">
-        <h1 class="welcome text-center">Welcome to Memo Web</h1>
-        <div class="card card-container">
-          <h2 class="login_title text-center">회원가입</h2>
+      <div className="container">
+        <h1 className="welcome text-center">Welcome to Memo Web</h1>
+        <div className="card card-container">
+          <h2 className="login_title text-center">회원가입</h2>
 
-          <form class="form-signin">
-            <span id="reauth-email" class="reauth-email"></span>
-            <p class="input_title">이름</p>
+          <form className="form-signin">
+            <span id="reauth-email" className="reauth-email"></span>
+            <p className="input_title">이름</p>
             <input
               type="text"
               id="name"
-              class="login_box"
+              className="login_box"
               placeholder="Name"
               required
-              autofocus
+              autoFocus
             />
-            <p class="input_title">아이디</p>
+            <p className="input_title">아이디</p>
             <input
               type="text"
               id="id"
-              class="login_box"
+              className="login_box"
               placeholder="Id"
               required
-              autofocus
+              autoFocus
             />
-            <p class="input_title">비밀번호</p>
+            <p className="input_title">비밀번호</p>
             <input
               type="password"
               id="password"
-              class="login_box"
+              className="login_box"
               placeholder="password"
               required
             />
-            <p class="input_title">비밀번호 확인</p>
+            <p className="input_title">비밀번호 확인</p>
             <input
               type="password"
               id="inputPassword"
-              class="login_box"
+              className="login_box"
               placeholder="password check"
               required
             />
-            <div id="remember" class="checkbox">
+            <div id="remember" className="checkbox">
               <label></label>
             </div>
             <button
-              class="btn btn-lg btn-primary"
+              className="btn btn-lg btn-primary"
               type="submit"
               onClick={registerHandler}
             >
