@@ -2,7 +2,7 @@ import React from "react";
 import "../LandingPage/LandingPage";
 import { useNavigate } from "react-router-dom";
 
-function LandingPage() {
+function RegisterPage() {
   const navigate = useNavigate();
   const registerHandler = () => {
     navigate("/");
@@ -77,5 +77,4 @@ function LandingPage() {
     </div>
   );
 }
-
-export default LandingPage;
+export default RegisterPage;
