@@ -1,21 +1,21 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const saltRounds = 10
+const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 
 const userSchema = mongoose.Schema({
     name : {
         type : String,
-        unique : true,
+        unique : 1,
         maxlength : 50,
         required: [
             true, 
-            "닉네임을 입력하세요."
+            "이름을 입력하세요."
         ]
     },
     id : {
         type : String,
-        unique : true,
+        unique : 1,
         trim : true,
         required: [
             true, 
