@@ -1,15 +1,14 @@
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
 const cookieParser = require('cookie-parser');
 const {auth} = require("./middleware/auth");
 const {User} = require("./models/User");
 const config = require('./config/key');
 
 //application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 //application/json
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cookieParser());
 
 const mongoose = require('mongoose')
@@ -20,12 +19,8 @@ mongoose.connect(config.mongoURI, {
   .catch(err => console.log(err))
 
 
-// app.get('/', (req, res) => {
-//   res.send('Hello World!')
-// })
-
 app.post('/api/register', (req, res) => {
-    const user = new User(req.body)
+    const user = new User(req.body);
   
     user.save((err, userInfo) => {
         if(err) {
