@@ -51,7 +51,7 @@ app.post('/api', (req, res) => {
       return res.json({login : false, message : "비밀번호가 틀렸습니다"})
       user.generateToken((err,user) => {
         if(err) return res.status(400).send(err);
-
+        res.cookie("x_authExp", user.tokenExp);
         res.cookie("x_auth",user.token)
         .status(200)
         .json({login : true,
@@ -77,7 +77,7 @@ app.get('/api/auth',auth,(req, res)=> {
 })
 
 app.get('/api/logout',auth,(req, res)=> {
-  User.findOneAndUpdate({_id : req.user._id},{token : ""},(err,user) => {
+  User.findOneAndUpdate({_id : req.user._id},{token : "", tokenExp: "" },(err,user) => {
       if(err) return res.json({success : false, err});
       return res.status(200).send({
         success : true
