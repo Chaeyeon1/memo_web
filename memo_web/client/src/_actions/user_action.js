@@ -3,8 +3,19 @@ import axios from 'axios';
 import {
     LOGIN_USER,
     REGISTER_USER,
-    AUTH_USER
+    AUTH_USER,
+    ADD_TO_LIST
 } from './types'
+
+export function addtolist(dataTosubmit) {
+    const request = axios.post('/api/main', dataTosubmit)
+    .then(response => response.data)
+
+    return {
+        type : ADD_TO_LIST,
+        payload : request
+    }
+}
 
 export function loginUser(dataTosubmit) {
     const request = axios.post('/api', dataTosubmit)

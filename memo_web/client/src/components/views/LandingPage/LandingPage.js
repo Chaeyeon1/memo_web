@@ -29,7 +29,7 @@ function LandingPage() {
     dispatch(loginUser(body))
             .then(response => {
               //console.log(response)
-                if(response.payload.login) {
+                if(response.payload.success) {
                     navigate('/main')
                 } else {
                     alert('login Error')

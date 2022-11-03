@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./todo.css";
+import {addtolist} from '../../../_actions/user_action'
+import {useDispatch} from 'react-redux'
 
 function InputBox(props) {
   const [Text, setText] = useState("");
   const inputRef = useRef(null);
+  const dispatch = useDispatch();
 
   const onChangeInput = (event) => {
     setText(event.currentTarget.value); // 현재 적혀져있는 값을 state에 넣음
@@ -23,7 +26,20 @@ function InputBox(props) {
 
   useEffect(() => {
     console.log(props.todoList);
-  }, [props.todoList]);
+
+    let body = {
+      //date 추가 예정
+      todolist : props.todoList,
+      input_true : props.todoList.length === 0 ? false : true
+    }
+    dispatch(addtolist(body))
+    .then(response => {
+        if(props.todoList.length === 0) {
+            console.log(response.payload)
+        }   
+    })
+
+  }, [dispatch, props.todoList]);
 
   return (
     <div className="todoapp__inputbox">
