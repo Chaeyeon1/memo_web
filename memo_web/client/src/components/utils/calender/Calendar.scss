@@ -1,6 +1,7 @@
 @use './theme.scss';
 @use './_common.scss' as common;
 
+
 .text{
     font-size: 1.0em;
 }
@@ -99,7 +100,7 @@
                 transform: scale(1.02);
                 border: none;
                 background: theme.$sub-color;
-                color: theme.$main-color;
+                color: theme.$main-color; // 파란색
                 font-weight: 600;
             }
         }

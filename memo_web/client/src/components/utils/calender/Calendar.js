@@ -3,6 +3,7 @@ import { Icon } from '@iconify/react';
 import { format, addMonths, subMonths } from 'date-fns';
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek } from 'date-fns';
 import { isSameMonth, isSameDay, addDays, parseISO } from 'date-fns';
+import * as dateFns from "date-fns";
 import "./Calendar.scss";
 
 const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
@@ -59,17 +60,17 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
 
             days.push(
                 <div
-                    className={`col cell ${
-                        !isSameMonth(day, monthStart)
-                            ? 'disabled'    // 이전 달 말일 & 이후 달 초일
+                    className={`col cell ${!isSameMonth(day, monthStart)
+                            ? 'disabled'                                              // 이전 달 말일 & 이후 달 초일
                             : isSameDay(day, selectedDate)
-                            ? 'selected'
-                            : format(currentMonth, 'M') !== format(day, 'M')
-                            ? 'not-valid'
-                            : 'valid'
-                    }`}
+                                ? 'selected'
+                                : format(currentMonth, 'M') !== format(day, 'M')
+                                    ? 'not-valid'
+                                    : 'valid'
+                        }`}
                     key={day}
-                    onClick={() => onDateClick(parseISO(cloneDay))}
+                    
+                    onClick={()=> onDateClick(cloneDay)}                              // 날짜 클릭!!
                 >
                     <span
                         className={
@@ -94,6 +95,8 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
     return <div className="body">{rows}</div>;
 };
 
+
+
 export const Calendar = () => {
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -109,8 +112,6 @@ export const Calendar = () => {
     };
 
 
-    
-
     return (
         <div className="calendar">
             <RenderHeader
@@ -124,6 +125,11 @@ export const Calendar = () => {
                 selectedDate={selectedDate}
                 onDateClick={onDateClick}
             />
+            <br />
+            <div className="ClickDay">
+                {dateFns.format(selectedDate, "yyyy.MM.dd")} 
+                {/* 클릭한 날짜 출력 */}
+            </div>
         </div>
     );
 };
