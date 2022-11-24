@@ -1,24 +1,19 @@
 import React from "react";
-import Calender from "../../utils/calender/Calendar";
 import Todo from "../../utils/todo/todo";
 import Slider from "../../utils/slider";
 import "./MainPage.css";
 
 function MainPage() {
+
   return (
     <div className="all">
       <div className="left">
         {" "}
         {/* left */}
-        <div className="calender">
-          {" "}
-          {/* calender */}
-          <Calender />
-        </div>
         <div className="todo">
           {" "}
-          {/* todo */}
-          <Todo />
+          {/* todo - 캘린더 & 투두리스트*/}
+          <Todo/>
         </div>
         <div className="slider">
           {" "}

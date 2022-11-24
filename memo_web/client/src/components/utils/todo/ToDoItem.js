@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./todo.css";
 
-function ToDoItem({ todoItem, todoList, setTodoList }) {
+function ToDoItem({ todoItem, todoList, setTodoList, date }) {
   const [edited, setEdited] = useState(false);
   const [newText, setNewText] = useState(todoItem.text);
   const editInputRef = useRef(null);
@@ -16,14 +16,17 @@ function ToDoItem({ todoItem, todoList, setTodoList }) {
     setNewText(event.target.value);
   };
 
-  const onClickSubmitButton = () => {
-    const nextTodoList = todoList.map((item) => ({
-      ...item,
-      text: item.id === todoItem.id ? newText : item.text, // 새로운 아이템 내용을 넣어줌
-    }));
-    setTodoList(nextTodoList); // 새로운 리스트를 넣어줌
+  const onClickSubmitButton = (event) => {
+    if( event.key ===  'Enter') {   // Enter 누르면 버튼 기능 실행
+      const nextTodoList = todoList.map((item) => ({
+        ...item,
+        text: item.id === todoItem.id ? newText : item.text, // 새로운 아이템 내용을 넣어줌
+      }));
 
-    setEdited(false); // 수정모드를 다시 읽기모드로 변경
+      setTodoList(nextTodoList); // 새로운 리스트를 넣어줌
+
+      setEdited(false); // 수정모드를 다시 읽기모드로 변경
+    }
   };
 
   const onClickEditButton = () => {

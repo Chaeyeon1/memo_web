@@ -81,11 +81,11 @@ app.get('/api/auth',auth,(req, res)=> {
 // todolist
 app.post("/api/main", auth, (req, res) => {
   
-  const timeElapsed = Date.now();
-  let today = new Date(timeElapsed);
+  let today = new Date(req.body.date);
   today = today.toLocaleDateString();
+  // console.log(req.body.todolist , req.body.date, today);
   // 후에 캘린더에서 선택한 일자로 변경할 것, today -> req.body.date
-
+  
   User.findOne({_id : req.user._id},
     (err, userInfo) => {        
         let select_date = false;

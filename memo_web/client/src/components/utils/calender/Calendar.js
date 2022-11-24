@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { format, addMonths, subMonths } from 'date-fns';
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek } from 'date-fns';
-import { isSameMonth, isSameDay, addDays, parseISO } from 'date-fns';
+import { isSameMonth, isSameDay, addDays } from 'date-fns';
 import * as dateFns from "date-fns";
 import "./Calendar.scss";
 
@@ -51,8 +51,6 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
     let day = startDate;
     let formattedDate = '';
 
-    
-
     while (day <= endDate) {
         for (let i = 0; i < 7; i++) {
             formattedDate = format(day, 'd');
@@ -95,11 +93,9 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
     return <div className="body">{rows}</div>;
 };
 
-
-
-export const Calendar = () => {
+export const Calendar = ({ date, getDate }) => {
     const [currentMonth, setCurrentMonth] = useState(new Date());
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const selectedDate = date;
 
     const prevMonth = () => {
         setCurrentMonth(subMonths(currentMonth, 1));
@@ -107,10 +103,9 @@ export const Calendar = () => {
     const nextMonth = () => {
         setCurrentMonth(addMonths(currentMonth, 1));
     };
-    const onDateClick = (day) => {
-        setSelectedDate(day);
+    const onDateClick = (date) => {
+        getDate(date);
     };
-
 
     return (
         <div className="calendar">
@@ -127,11 +122,11 @@ export const Calendar = () => {
             />
             <br />
             <div className="ClickDay">
-                {dateFns.format(selectedDate, "yyyy.MM.dd")} 
-                {/* 클릭한 날짜 출력 */}
+                {dateFns.format(selectedDate, "yyyy.MM.dd")}
+                {console.log(`클릭 날짜 : ${selectedDate}`)}
             </div>
         </div>
     );
 };
 
-export default Calendar
+export default Calendar;
