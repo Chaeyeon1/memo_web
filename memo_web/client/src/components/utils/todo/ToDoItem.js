@@ -44,12 +44,12 @@ function ToDoItem({ todoItem, todoList, setTodoList, date }) {
   };
 
   const onClickDeleteButton = () => {
-    if (window.confirm("지우시겠습니까?")) {
-      const nextTodoList = todoList.map((item) => ({
-        ...item,
-        deleted: item.id === todoItem.id ? true : item.deleted,
-      }));
-
+    if (window.confirm("지우시겠습니까?")) { // 리스트에서 삭제
+      const nextTodoList = todoList.filter(item => item.id !== todoItem.id );
+      // const nextTodoList = todoList.map((item) => ({
+      //   ...item,
+      //   deleted: item.id === todoItem.id ? true : item.deleted,
+      // }));
       setTodoList(nextTodoList);
     }
   };

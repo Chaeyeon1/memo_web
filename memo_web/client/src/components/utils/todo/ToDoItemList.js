@@ -9,7 +9,7 @@ const ToDoItemList = ({ title, todoList, setTodoList, checkedList, date }) => (
     <ul className="todoapp__list-ul">
       {todoList && // todoList가 있을때만 출력
         todoList.map((todoItem, index) => {
-          if (todoItem.deleted) return null;
+          // if (todoItem.deleted) return null;
           
           // checkedList 값에 따라 '할 일 목록' 또는 '완료한 목록'을 출력
           if (checkedList !== todoItem.checked) return null;
@@ -25,7 +25,7 @@ const ToDoItemList = ({ title, todoList, setTodoList, checkedList, date }) => (
             />
             );
           })}
-          {console.log(date, todoList)}
+          {/* {console.log(date.toLocaleDateString(), todoList)} */}
     </ul>
   </div>
 );

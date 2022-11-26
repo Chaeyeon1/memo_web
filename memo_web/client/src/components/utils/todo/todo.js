@@ -19,9 +19,9 @@ const Todo = () => {
       // userid : user.userData.id,
       id: nextId.current,
       text: newText,
-      date: date,
+      // date: date.toLocaleDateString(),
       checked: false,
-      deleted: false,
+      // deleted: false,
     };
 
     setTodoList([...todoList, todo]);
@@ -40,7 +40,7 @@ const Todo = () => {
       {/* ToDo Item을 추가할 수 있는 input 박스 */}
       <InputBox 
         todoList={todoList} 
-        date={date} 
+        date={date}
         refreshFunction={updateText} 
       />
 
@@ -59,7 +59,7 @@ const Todo = () => {
         setTodoList={setTodoList}
         checkedList={true}
       />
-      {console.log(date)}
+      {/* {console.log('todo.js',date.toLocaleDateString())} */}
     </div>
   );
 };

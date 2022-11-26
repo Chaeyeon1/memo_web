@@ -5,7 +5,6 @@ import { startOfMonth, endOfMonth, startOfWeek, endOfWeek } from 'date-fns';
 import { isSameMonth, isSameDay, addDays } from 'date-fns';
 import * as dateFns from "date-fns";
 import "./Calendar.scss";
-
 const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
     return (
         <div className="header row">
@@ -123,7 +122,7 @@ export const Calendar = ({ date, getDate }) => {
             <br />
             <div className="ClickDay">
                 {dateFns.format(selectedDate, "yyyy.MM.dd")}
-                {console.log(`클릭 날짜 : ${selectedDate}`)}
+                {/* {console.log(`클릭 날짜 : ${selectedDate.toLocaleDateString()}`)} */}
             </div>
         </div>
     );

@@ -81,10 +81,10 @@ app.get('/api/auth',auth,(req, res)=> {
 // todolist
 app.post("/api/main", auth, (req, res) => {
   
-  let today = new Date(req.body.date);
-  today = today.toLocaleDateString();
-  // console.log(req.body.todolist , req.body.date, today);
-  // 후에 캘린더에서 선택한 일자로 변경할 것, today -> req.body.date
+  let date = new Date(req.body.date);
+  date = date.toLocaleDateString();
+  // console.log(req.body.todolist , req.body.date, date);
+  // 후에 캘린더에서 선택한 일자로 변경할 것, date -> req.body.date
   
   User.findOne({_id : req.user._id},
     (err, userInfo) => {        
@@ -94,53 +94,76 @@ app.post("/api/main", auth, (req, res) => {
 
         // 해당 user에게 선택한 일자의 todolist가 있는지 확인
         userInfo.todolist.forEach((item) => {
-            if(item.date === today) {
+            if(item.date === date) {
               select_date = true;
               user_todo = item.todo
               user_date = item.date
             }
         })
 
-        if(!req.body.input_true) { // 현재 입력이 없고 선택한 일자에 todolist가 있다면
+        if(!req.body.update) { // 현재 todolist 업데이트가 아니고 선택한 일자에 todolist가 있다면 -> 넣어줌
           if(select_date) {
             res.status(200).json({
               date : user_date,
               todolist : user_todo, 
             })
           }
+          else { // 현재 todolist 업데이트가 아니고 선택한 일자에 todolist가 없다면 -> 날짜만 반환
+            res.status(200).json({
+              date : date
+            })
+          }
         }
-        else { // 현재 입력이 있고 선택한 일자에 todolist가 있다면 -> 일자 찾아서 todo update
-          if(select_date) {
-            User.findOneAndUpdate(
-                {_id:req.user._id, "todolist.date": today},
+        else { // 현재 todolist 업데이트고
+          if(select_date) { // 선택한 일자에 todolist가 있고
+            if (!req.body.deleted) { // delete로 비어있는 상태가 아니라면 -> 찾아서 업데이트
+              User.findOneAndUpdate(
+                {_id:req.user._id, "todolist.date": date},
                 { $set: { "todolist.$.todo" : req.body.todolist } },
                 // 캘린더를 누르고 해당 일자의 todo를 가져왔기 때문에 현재 todo는 모두 변경했음 -> 추후 변경 가능
 
                 {new : true},
                 (err,userInfo) => {
                     if(err) return res.status(400).json({success : false, err})
-                    userInfo.todolist.forEach((item) => {if(item.date === today) {user_todo = item.todo; user_date = item.date }})
+                    userInfo.todolist.forEach((item) => {if(item.date === date) {user_todo = item.todo; user_date = item.date }})
                     res.status(200).json({
                       date : user_date,
                       todolist :  user_todo, 
                     }) // 해당 일자의 todo와 일자만 return
                 }
-            )
+              )
+            }
+            else { // delete로 todolist가 비어있는 상태로 업데이트한다면 -> 해당 date 삭제
+              User.findOneAndUpdate(
+                {_id:req.user._id},
+                {
+                  "$pull": 
+                  { "todolist": {'date' : date} }
+                },
+                {new : true},
+                (err,userInfo) => {
+                    if(err) return res.status(400).json({success : false, err})
+                    res.status(200).json({
+                      date : date
+                    })
+                }
+              )
+            }
           }
-          // 현재 입력이 있고 선택한 일자에 todolist가 없다면 -> 일자와 함께 todo update
+          // 현재 todolist 업데이트고 선택한 일자에 todolist가 없다면 -> 일자와 함께 todo update
           else {
               User.findOneAndUpdate(
                 {_id:req.user._id},
                 {$push : {
                       todolist : {
-                            date : today,
+                            date : date,
                             todo : req.body.todolist
                         }}
                 },
                 {new : true},
                 (err,userInfo) => {
                     if(err) return res.status(400).json({success : false, err})
-                    userInfo.todolist.forEach((item) => {if(item.date === today) {user_todo = item.todo; user_date = item.date }})
+                    userInfo.todolist.forEach((item) => {if(item.date === date) {user_todo = item.todo; user_date = item.date }})
                     res.status(200).json({
                       date : user_date,
                       todolist :  user_todo, 

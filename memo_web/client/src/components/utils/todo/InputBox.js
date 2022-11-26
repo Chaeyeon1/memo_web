@@ -3,10 +3,11 @@ import "./todo.css";
 import {addtolist} from '../../../_actions/user_action'
 import {useDispatch} from 'react-redux'
 
-function InputBox(props, date) {
+function InputBox(props) {
   const [Text, setText] = useState("");
   const inputRef = useRef(null);
   const dispatch = useDispatch();
+  const mounted = useRef(false)
 
   const onChangeInput = (event) => {
     setText(event.currentTarget.value); // 현재 적혀져있는 값을 state에 넣음
@@ -24,24 +25,37 @@ function InputBox(props, date) {
   };
 
   useEffect(() => {
-    // console.log("props.date :" , props.date);
+    if (!mounted.current) { //해당 useEffect는 마운트때 실행 x
+      mounted.current = true
+    }
+    else {
+      let body = {
+        todolist : props.todoList,
+        date : props.date.toLocaleDateString(),
+        update : true,
+        deleted : props.todoList.length === 0 ? true : false //delete로 인해 todolist에 아무것도 없을 떄
+      }
+      
+      dispatch(addtolist(body))
+      .then(response => {
+            console.log('데이터 업데이트 : ', response.payload)
+      })
+    }
 
+  }, [dispatch, props.todoList]); //props.date 넣지 않고 분리함 (warning 무시)
+  
+  useEffect(() => {
     let body = {
-      //date 추가 예정
-      todolist : props.todoList,
-      date : props.date,
-      input_true : props.todoList.length === 0 ? false : true
+      date : props.date.toLocaleDateString(),
+      update : false,
     }
     
     dispatch(addtolist(body))
     .then(response => {
-        if(props.todoList.length === 0) {
-            console.log(response.payload)
-            console.log(props.date)
-        }   
+          console.log('데이터 가져오기 : ', response.payload)
     })
 
-  }, [dispatch, props.todoList]);
+  }, [dispatch, props.date]);
 
   return (
     <form onSubmit={onPressSubmitButton} className="todo_inputBox">
@@ -53,7 +67,7 @@ function InputBox(props, date) {
           placeholder="할 일을 입력해주세요"
           className="todoapp__inputbox-inp"
           value={Text}
-          date={date}
+          date={props.date}
           ref={inputRef}
           onChange={onChangeInput}
         />
